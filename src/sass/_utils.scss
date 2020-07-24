@@ -1,0 +1,125 @@
+//fonts
+@font-face{
+    font-family: 'Yellowtail';
+    src: local('Yellowtail'), url('../fonts/Yellowtail/Yellowtail-Regular.ttf');
+}
+@font-face{
+    font-family: 'Lato';
+    src: local('Lato'), url('../fonts/Lato/Lato-Regular.ttf');
+}
+
+//mixins
+@mixin element_operators{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(100,100,100, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    .todolist_e_element_content{
+        background-color: white;
+        width: 50vw;
+        height: 50vh;
+        @media (max-height: 720px) {
+            height: 360px;
+        }
+        @media (max-width: 992px) {
+            width: 496px;
+        }
+        border-radius: 20px;
+        h1{
+            text-align: center;
+            width: 100%;
+        }
+        i{
+            border-radius: 2px;
+            padding: 4px;
+            cursor: pointer;
+            margin: 10px;
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+        .todolist_e_element_form{
+            margin-top:20px;
+            .todolist_input{
+                width: 100%;
+                margin-top: 10px;
+            }
+            .inp{
+                position: relative;
+                margin: auto;
+                width: 100%;
+                border-radius: 3px;
+                overflow: hidden;
+            }
+            .label{
+                width: 100%;
+                position: absolute;
+                top: 20px;
+                left: 12px;
+                font-size: 16px;
+                color: rgba($sonicSilver,.5);
+                font-weight: 500;
+                transform-origin: 0 0;
+                transform: translate3d(0,0,0);
+                transition: all .2s ease;
+                pointer-events: none;
+            }
+            .focus-bg{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba($sonicSilver,.05);
+                z-index: -1;
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+            input{
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                border: 0;
+                font-size: 120%;
+                font-family: inherit;
+                padding: 16px 12px 0 12px;
+                height: 56px;
+                font-weight: 400;
+                background: rgba($sonicSilver,.1);
+                box-shadow: inset 0 -1px 0 rgba($sonicSilver,.3);
+                color: $sonicSilver;
+                transition: all .15s ease;
+                &:hover{
+                    background: rgba($sonicSilver,.04);
+                    box-shadow: inset 0 -1px 0 rgba($sonicSilver,.5);
+                }
+                &:not(:placeholder-shown){
+                    + .label{
+                        color: rgba($sonicSilver,.5);
+                        transform: translate3d(0,-16px,0) scale(.75);
+                    }
+                }
+                &:focus{
+                    background: rgba($sonicSilver,.05);
+                    outline: none;
+                    box-shadow: inset 0 -2px 0 $babyBlue;
+                    + .label{
+                        color: $babyBlue;
+                        transform: translate3d(0,-16px,0) scale(.75);
+                        + .focus-bg{
+                            transform: scaleX(1);
+                            transition: all .1s ease;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
